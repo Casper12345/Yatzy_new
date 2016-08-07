@@ -21,6 +21,6 @@ class Game:
             self.current_round = Round(self.scoreboard)
 
 
-The way of constructing this game is following the control, view, module model.
+The way of constructing this game is following the control, view, model structure.
 Trying to implement a OOP design.
 
