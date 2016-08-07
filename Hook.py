@@ -1,6 +1,6 @@
 """ This is the start up program that hooks up to the control script """
 
-# Import statements
+# Local import of the Control script
 
 import Control
 
