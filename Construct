@@ -19,3 +19,8 @@ class Game:
 
         while not win_condition.is_won():
             self.current_round = Round(self.scoreboard)
+
+
+The way of constructing this game is following the control, view, module model.
+Trying to implement a OOP design.
+
