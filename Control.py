@@ -138,7 +138,7 @@ def player_round():
 def player_loop():
     # while loop that breaks when all slots are filled. When len(PLAYER_RESULT.menu >= 15.
 
-    while len(PLAYER_CONTROL.menu) < 2:  # changed from 15
+    while len(PLAYER_CONTROL.menu) < 15:  # changed from 15
         Control.control()  # calls control.control that asks if R or Q.
         player_round()
 
