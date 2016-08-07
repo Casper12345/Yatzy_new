@@ -7,64 +7,21 @@ from collections import OrderedDict
 
 class Dices(object):
 
-    # creating the variables
+    """ class containing the dice object"""
+
     def __init__(self):
 
-        # self.roll_number is variable for the dice output as a list
-        self.roll_number = list()
+        self.roll_number = list()  # variable for the dice output as a list
 
-        # self.save is a list of the saved dice
-        self.save = list()
+        self.roll_save = list()  # variable for the saved dice
 
-    # static method that inputs position of the dice to save
-
-    @staticmethod
-    def ask_action():  # is called by ??
-        return raw_input('Select positions of dice you want to '
-                         'save (eg. 13 - for die positions 1 and 3): ')
-
-    # method that outputs the dice roll
-
-    # sets the variable roll_number to random depending on the amount of dice left
-    def die_roll(self):
-        self.roll_number = [random.randint(1, 6) for _ in range(0, (5-len(self.save)))]
-
-    # flow control method for the dice object
-    def operation(self):
-
-        ask = self.ask_action()  # calls ask_action()
-
-        if ask.isdigit() or ask == '':  # is ask a digit or no input?
-            # transform input a list of integers
-            if ask == '':
-                pass
-
-            else:
-                ask = [int(i) for i in ask]
-
-                # creates a list from 1 to 5 with no duplicates
-                l_no_dub = [i for i in ask if 5 >= i > 0 and ask.count(i) == 1]
-
-                # creates a list that starts with 0
-                l_count_zero = [i - 1 for i in ask if 5 >= i > 0 and ask.count(i) == 1]
-
-                # flow control mechanism
-                if ask == l_no_dub and len(ask) <= len(self.roll_number) and\
-                        max(ask) <= len(self.roll_number):
-
-                    # appends position in self.roll_number to self.save
-                    for i in l_count_zero:
-                        self.save.append(self.roll_number[i])
-
-                else:
-                    print 'Try again'
-                    return self.operation()
-        else:
-            print 'Try again'
-            return self.operation()
+    def die_roll(self):  # This method creates the dice result
+        self.roll_number = [random.randint(1, 6) for _ in range(0, (5 - len(self.roll_save)))]
 
 
 class ScoreBoard(object):
+
+    """ Class that contains the scoreboard and the scoreboard control variables """
 
     def __init__(self):
         self.menu = list()
@@ -86,36 +43,18 @@ class ScoreBoard(object):
             ('Chance', list()),
             ('Yatzy', list())])
 
-    @staticmethod
-    def ask_action():
-        return raw_input('Where do you want to save the dice to?')
 
-    # defines commands for appending the final saved dice to score slot.
-    def operations(self):
-        ask = self.ask_action()
+class ScoreCalculator(object):
 
-        if ask in self.result_catalog and ask not in self.menu:
-            self.result_catalog[ask] = PLAYER_DICE.save
-            self.menu.append(ask)
-        else:
-            print 'Try again'
-            return self.operations()
-        return ask
+    """ This class calculates the dice values of the result slots """
 
-    # creates the menu to choose score slots that are not already filled
-    def menu_1_method(self):
-        self.menu_1 = list(i for i in self.result_catalog.keys() if i not in self.menu)
-
-
-class ScoreBoardCalculator(object):
-
-    # this class calculates the dice values of the result slots
     def __init__(self):
 
         # setting self.cal to player_score.result_catalog
-        self.cal = PLAYER_RESULT.result_catalog
 
-        # defining the calculate variables
+        self.cal = PLAYER_SCORE_BOARD.result_catalog
+
+        # defining the calculate variables MAYBE SOLVE WITH INHERITANCE
         self.ones = None
         self.twos = None
         self.threes = None
@@ -254,3 +193,35 @@ class ScoreBoardCalculator(object):
                            self.full_house + self.chance + self.yatzy
 
 
+""" Creating instances of Model Classes"""
+
+PLAYER_DICE = Dices()
+PLAYER_SCORE_BOARD = ScoreBoard()
+PLAYER_CALCULATE = ScoreCalculator()
+
+
+""" Calculates Player Score"""
+
+
+def player_score_calculation():
+
+    # runs all the calculation functions
+    PLAYER_CALCULATE.ones_cal()
+    PLAYER_CALCULATE.twos_cal()
+    PLAYER_CALCULATE.threes_cal()
+    PLAYER_CALCULATE.fours_cal()
+    PLAYER_CALCULATE.fives_cal()
+    PLAYER_CALCULATE.sixes_cal()
+    PLAYER_CALCULATE.bonus_cal()
+
+    PLAYER_CALCULATE.small_straight_cal()
+    PLAYER_CALCULATE.large_straight_cal()
+    PLAYER_CALCULATE.three_of_a_kind_cal()
+    PLAYER_CALCULATE.four_of_a_kind_cal()
+    PLAYER_CALCULATE.one_pair_cal()
+    PLAYER_CALCULATE.two_pairs_cal()
+    PLAYER_CALCULATE.full_house_cal()
+    PLAYER_CALCULATE.chance_cal()
+    PLAYER_CALCULATE.yatzy_cal()
+
+    PLAYER_CALCULATE.final_score_cal()

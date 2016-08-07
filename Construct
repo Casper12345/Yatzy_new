@@ -1,3 +1,6 @@
+
+
+
 game = Game()
 game.start()
 
@@ -9,7 +12,7 @@ class View:
 class Game:
 
     def __init__(self):
-        self.scoreboard = ScoreBoard()
+        self.scoreboard = ScoreBoard() # pulls in variables from Model
 
     def start_game:
         self.current_round = Round(self.scoreboard)
