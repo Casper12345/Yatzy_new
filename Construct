@@ -1,0 +1,21 @@
+game = Game()
+game.start()
+
+class View:
+
+    def ask_save_dice:
+
+    def __output_current_status(self, scoreboard):
+class Game:
+
+    def __init__(self):
+        self.scoreboard = ScoreBoard()
+
+    def start_game:
+        self.current_round = Round(self.scoreboard)
+        result = self.current_round.begin()
+
+        win_condition = ScoreBoardAnalyzer()
+
+        while not win_condition.is_won():
+            self.current_round = Round(self.scoreboard)
