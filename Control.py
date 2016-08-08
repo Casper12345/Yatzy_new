@@ -148,9 +148,3 @@ def main():
     player_loop()  # calls player_loop()
     Model.player_score_calculation() # calls player_statistics
     View.ProgramOutput.result_out() # outputs result
-
-
-
-
-
-

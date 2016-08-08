@@ -67,36 +67,36 @@ class ProgramOutput(object):
         print '\n'
 
     @staticmethod  # This method outputs the final save in the slot
-    def final_slot(m):
-        print '\n', '{}:{}'.format(m, Model.PLAYER_SCORE_BOARD.result_catalog[m]), '\n'
+    def final_slot(k):
+        print '\n', '{}:{}'.format(k, Model.PLAYER_SCORE_BOARD.result_catalog[k]), '\n'
 
     @staticmethod  # This method outputs the final score result
     def result_out():
 
         # prints the result of the first part of the score
-        print 'Ones score:', Model.PLAYER_CALCULATE.ones
-        print 'Twos score:', Model.PLAYER_CALCULATE.twos
-        print 'Threes score:', Model.PLAYER_CALCULATE.threes
-        print 'Fours score:', Model.PLAYER_CALCULATE.fours
-        print 'Fives score:', Model.PLAYER_CALCULATE.fives
-        print 'Sixes score:', Model.PLAYER_CALCULATE.sixes, '\n'
+        print 'Ones score:', Model.PLAYER_CALCULATE.calculate_catalog['A']
+        print 'Twos score:', Model.PLAYER_CALCULATE.calculate_catalog['B']
+        print 'Threes score:', Model.PLAYER_CALCULATE.calculate_catalog['C']
+        print 'Fours score:', Model.PLAYER_CALCULATE.calculate_catalog['D']
+        print 'Fives score:', Model.PLAYER_CALCULATE.calculate_catalog['E']
+        print 'Sixes score:', Model.PLAYER_CALCULATE.calculate_catalog['F'], '\n'
 
         # prints the result of the bonus
-        print 'Bonus:', Model.PLAYER_CALCULATE.bonus, '\n'
+        print 'Bonus:', Model.PLAYER_CALCULATE.calculate_catalog['P'], '\n'
 
         # prints the result og the second part of the score
-        print 'Small Straight:', Model.PLAYER_CALCULATE.small_straight
-        print 'Large Straight:', Model.PLAYER_CALCULATE.large_straight
-        print 'Three of a Kind:', Model.PLAYER_CALCULATE.three_of_a_kind
-        print 'Four of a Kind:', Model.PLAYER_CALCULATE.four_of_a_kind
-        print 'One Pair:', Model.PLAYER_CALCULATE.one_pair
-        print 'Two Pairs', Model.PLAYER_CALCULATE.two_pairs
-        print 'Full House', Model.PLAYER_CALCULATE.full_house
-        print 'Chance:', Model.PLAYER_CALCULATE.chance
-        print 'Yatzy:', Model.PLAYER_CALCULATE.yatzy, '\n'
+        print 'One Pair:', Model.PLAYER_CALCULATE.calculate_catalog['G']
+        print 'Two Pairs:', Model.PLAYER_CALCULATE.calculate_catalog['H']
+        print 'Three of a Kind:', Model.PLAYER_CALCULATE.calculate_catalog['I']
+        print 'Four of a Kind:', Model.PLAYER_CALCULATE.calculate_catalog['J']
+        print 'Small Straight:', Model.PLAYER_CALCULATE.calculate_catalog['K']
+        print 'Large Straight', Model.PLAYER_CALCULATE.calculate_catalog['L']
+        print 'Full House', Model.PLAYER_CALCULATE.calculate_catalog['M']
+        print 'Chance:', Model.PLAYER_CALCULATE.calculate_catalog['N']
+        print 'Yatzy:', Model.PLAYER_CALCULATE.calculate_catalog['O'], '\n'
 
         # prints the final score
-        print 'Final score:', Model.PLAYER_CALCULATE.final_score
+        print 'Final score:', Model.PLAYER_CALCULATE.calculate_catalog['Q']
 
     """ Auxiliary Output Methods"""
 
