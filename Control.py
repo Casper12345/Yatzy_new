@@ -85,66 +85,72 @@ class Control(object):
         self.menu_1 = list(i for i in Model.PLAYER_SCORE_BOARD.result_catalog.keys()
                            if i not in self.menu)
 
+    """ Methods that controls the game flow"""
 
-""" Creating instances """
+    @classmethod
+    def player_roll_func(cls):
+        # main roll function
+        Model.PLAYER_DICE.die_roll()  # calls method that creates the die output
+
+        View.ProgramOutput.dice_are()  # calls the method that outputs dice are:
+
+        PLAYER_CONTROL.operation_1()  # calls method that handles player input and saves dice
+
+        View.ProgramOutput.saved()  # calls method that prints saved:
+
+    @classmethod
+    def player_roll_result(cls):
+        # result function when the sequence is finished.
+
+        PLAYER_CONTROL.menu_1_method()  # appends dice to saved slot
+
+        # this prints the result of the save after all the rolls
+        View.ProgramOutput.result_is()  # calls function that outputs result is:
+
+        View.ProgramOutput.save_slots()  # printing the slots that are not yet taken.
+
+        operation = PLAYER_CONTROL.operation_2()  # calls operations_2
+
+        View.ProgramOutput.final_slot(operation)  # outputs final_slot
+
+        # resetting PLAYER_DICE.save
+        Model.PLAYER_DICE.roll_save = list()
+
+    @classmethod
+    def player_round(cls):
+        Control.player_roll_func()
+        for _ in range(2):
+
+            if len(Model.PLAYER_DICE.roll_save) == 5:
+                break
+            else:
+                View.UserInput.control_1()  # waits for <return>
+                Control.player_roll_func()
+
+        Control.player_roll_result()
+
+    @classmethod
+    def player_loop(cls):
+        # while loop that breaks when all slots are filled. When len(PLAYER_RESULT.menu >= 15.
+
+        while len(PLAYER_CONTROL.menu) < 15:
+            Control.control()  # calls control.control that asks if R or Q.
+            Control.player_round()
+
+    """ Main function """
+
+    @classmethod
+    def main(cls):
+        View.ProgramOutput.welcome()  # calls welcome() from class Control
+        Control.player_loop()  # calls player_loop()
+        Model.player_score_calculation()  # calls player_statistics
+        View.ProgramOutput.result_out()  # outputs result
+
+
+""" Creating instance """
 
 PLAYER_CONTROL = Control()
 
-""" Functions for the game """
 
 
-def player_roll_func():
-    # main roll function
-    Model.PLAYER_DICE.die_roll()  # calls method that creates the die output
 
-    View.ProgramOutput.dice_are()  # calls the method that outputs dice are:
-
-    PLAYER_CONTROL.operation_1()  # calls method that handles player input and saves dice
-
-    View.ProgramOutput.saved()  # calls method that prints saved:
-
-
-def player_roll_result():
-    # result function when the sequence is finished.
-
-    PLAYER_CONTROL.menu_1_method()  # appends dice to saved slot
-
-    # this prints the result of the save after all the rolls
-    View.ProgramOutput.result_is()  # calls function that outputs result is:
-
-    View.ProgramOutput.save_slots()  # printing the slots that are not yet taken.
-
-    operation = PLAYER_CONTROL.operation_2()  # calls operations_2
-
-    View.ProgramOutput.final_slot(operation)  # outputs final_slot
-
-    # resetting PLAYER_DICE.save
-    Model.PLAYER_DICE.roll_save = list()
-
-
-def player_round():
-    player_roll_func()
-    for _ in range(2):
-
-        if len(Model.PLAYER_DICE.roll_save) == 5:
-            break
-        else:
-            View.UserInput.control_1()  # waits for <return>
-            player_roll_func()
-
-    player_roll_result()
-
-
-def player_loop():
-    # while loop that breaks when all slots are filled. When len(PLAYER_RESULT.menu >= 15.
-
-    while len(PLAYER_CONTROL.menu) < 15:  # changed from 15
-        Control.control()  # calls control.control that asks if R or Q.
-        player_round()
-
-
-def main():
-    View.ProgramOutput.welcome()  # calls welcome() from class Control
-    player_loop()  # calls player_loop()
-    Model.player_score_calculation() # calls player_statistics
-    View.ProgramOutput.result_out() # outputs result
